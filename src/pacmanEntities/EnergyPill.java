@@ -12,7 +12,7 @@ public class EnergyPill extends Element{
      */
     public EnergyPill(Board Board){
         super(Board);
-        this.identity = "energyPill";
+        identity = ENERGY_PILL;
         Board.updateGameBoard(this);
     }
     

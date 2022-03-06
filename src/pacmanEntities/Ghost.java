@@ -12,11 +12,10 @@ public class Ghost extends Element {
     
     Ghost(Board Board){
     super(Board);
-    this.identity = "ghost";
+    this.identity = GHOST;
     this.eatable = false;
     }
     
-
     /**
      *
      * @param pGhostName
@@ -40,11 +39,12 @@ public class Ghost extends Element {
     public void addSpeed(int speed){
         this.speed += speed;
     }
+     
+    public void setEatable(boolean eatable){
+        this.eatable = eatable;
+    }
     
-    /** Ativa e desativa o efeito da pílula de energia nos fantasmas.
-     * @param bool
-     */
-    public void setEnergyPillEffect(boolean bool){
-        this.eatable = bool;
+    public boolean getEatable(){
+        return eatable;
     }
 }

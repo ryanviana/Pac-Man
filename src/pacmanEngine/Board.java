@@ -13,60 +13,14 @@ public class Board implements gameConstants{
      * por objetos da classe BoardCell.
      */
     public BoardCell[][] gameBoard;
-    
-    /** O atributo levelData refere-se ao design das paredes do labirinto
-     * em determinado nível.
-     */
-    public int levelData[][] = {
-        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-        {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-        
-    };
-   
-    /** Inicia o labirinto composto por objetos BoardCell.
-     */
-    public void startBoard(){
-       gameBoard = new BoardCell[N_CELLS_ROW][N_CELLS_COLUMN];
-       int i,j;
-        //pass the drawed board to the cell gameBoard.
-       for(i=0;i<N_CELLS_ROW;i++){
-           for(j=0;j<N_CELLS_COLUMN;j++){
-               gameBoard[i][j] = new BoardCell();
-               if(levelData[i][j]==1){
-                   gameBoard[i][j].setWall(true);
-               }
-           }
-       }
-    }
-    
+
     /** Verifica se uma célula do labirinto é válida para se inserir um
      * elemento.
      *
      * @param xPosition posição x em que o elemento será inserido.
      * @param yPosition posição y em que o elemento será inserido.
-     * @param Board labirinto em que o elemento será inserido.
      * @return se a célula é valida ou não.
-     */
-    
+     */    
     public boolean cellValidation(int xPosition, int yPosition){
     return ( xPosition >= 0 && yPosition >= 0 
              &&
@@ -83,19 +37,24 @@ public class Board implements gameConstants{
         return waka;
     }
     
+    
     /** Inicializa um objeto DumbGhost no labirinto.
+     * @param name nome do fantasma
      * @return O objeto DumbGhost que foi inicializado.
      */
-    public DumbGhost startDumbGhost(){
+    public DumbGhost startDumbGhost(String name){
         DumbGhost dumbGhost = new DumbGhost(this);
+        dumbGhost.setName(name);
         return dumbGhost;
     }
     
     /** Inicializa um objeto HunterGhost no labirinto.
+     * @param name nome do fantasma
      * @return O objeto HunterGhost que foi inicializado.
      */
-    public HunterGhost startHunterGhost(){
+    public HunterGhost startHunterGhost(String name){
         HunterGhost hunterGhost = new HunterGhost(this);
+        hunterGhost.setName(name);
         return hunterGhost;
     }
     
@@ -125,6 +84,17 @@ public class Board implements gameConstants{
         return energyPillsArray;
     }
     
+    /** Inicializa uma fruta no labirinto.
+     * @param level nível atual do jogo.
+     * @return retorna a fruta criada.
+     */
+    public Fruit startFruits(int level){
+            Fruit fruit = new Fruit(this, level);
+            fruit.setFruitName(level);
+            return fruit;
+    }
+        
+    
     /** Realiza o update do labirinto do jogo, tanto por movimentação ou
      * inserção de um elemento.
      * O método deve ser usado após a inserção ou movimentação de um elemento.
@@ -133,25 +103,25 @@ public class Board implements gameConstants{
     public void updateGameBoard(Element Element){
 
         switch (Element.get_id()) {
-            case "waka":
+            case WAKA:
                 this.gameBoard[Element.get_previous_yPosition()][Element.get_previous_xPosition()].setWaka(false);
                 this.gameBoard[Element.get_yPosition()][Element.get_xPosition()].setWaka(true);
                 break;
-            case "dumbGhost":
+            case DUMB_GHOST:
                 this.gameBoard[Element.get_previous_yPosition()][Element.get_previous_xPosition()].setDumbGhost(false);
                 this.gameBoard[Element.get_yPosition()][Element.get_xPosition()].setDumbGhost(true);
                 break;
-            case "hunterGhost":
+            case HUNTER_GHOST:
                 this.gameBoard[Element.get_previous_yPosition()][Element.get_previous_xPosition()].setHunterGhost(false);
                 this.gameBoard[Element.get_yPosition()][Element.get_xPosition()].setHunterGhost(true);
                 break;
-            case "pacDot":
+            case PACDOT:
                 this.gameBoard[Element.get_yPosition()][Element.get_xPosition()].setPacDot(true);
                 break;
-            case "energyPill":
+            case ENERGY_PILL:
                 this.gameBoard[Element.get_yPosition()][Element.get_xPosition()].setEnergyPill(true);
                 break;
-            case "bonusFruit":
+            case BONUS_FRUIT:
                 this.gameBoard[Element.get_yPosition()][Element.get_xPosition()].setBonusFruit(true);
                 break;
             default:
@@ -159,44 +129,10 @@ public class Board implements gameConstants{
         }
     
     }
-    
-    /** Imprime o labirinto.
-     */
-    public void printGameBoard(){
-        
-        int i,j;
-        
-        for(i = 0; i<N_CELLS_ROW; i++){
-            for(j = 0; j<N_CELLS_COLUMN; j++){
-                if(gameBoard[i][j].getWall() == true){
-                    System.out.print(" " + "#" + " ");
-                }
-                else if(gameBoard[i][j].getWaka() == true){
-                    System.out.print(" " + "O" + " ");
-                }
-                else if(gameBoard[i][j].getDumbGhost() == true){
-                    System.out.print(" " + "D" + " ");
-                }
-                else if(gameBoard[i][j].getHunterGhost() == true){
-                    System.out.print(" " + "H" + " ");
-                }
-                else if(gameBoard[i][j].getEnergyPill() == true){
-                    System.out.print(" " + "^" + " ");
-                }
-                else if(gameBoard[i][j].getPacDot() == true){
-                    System.out.print(" " + "*" + " ");
-                }
-                else{
-                    System.out.print(" "+" "+" ");
-                }
-                
-            }
-            System.out.println("");
-        }
-            System.out.println("");
 
-    }
-    
+    /** Inicializa um nível do arquivo texto.
+     * @param fileName nome do arquivo texto que contém a informação do labirinto.
+     */
     public void initializeLevel(String fileName) {
         gameBoard = new BoardCell[N_CELLS_ROW][N_CELLS_COLUMN];
         
@@ -208,13 +144,12 @@ public class Board implements gameConstants{
                     gameBoard[i][j]= new BoardCell();
                     if(scanner.nextInt()==1){
                         gameBoard[i][j].setWall(true);
-                    }
-                        
+                    }  
                 }
             }
         }
         catch(FileNotFoundException e){
-        System.exit(0);
+            System.exit(0);
         }
     }
 }

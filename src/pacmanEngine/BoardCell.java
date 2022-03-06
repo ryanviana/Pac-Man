@@ -97,7 +97,7 @@ this.wall = false;
      * e falso se não houver.
      */
     public boolean getDumbGhost(){
-    return this.dumbGhost;
+        return this.dumbGhost;
 }
 
     /** Retorna se uma célula tem ou não um fantasma com movimento predatório.
@@ -128,5 +128,6 @@ this.wall = false;
     public boolean getBonusFruit(){
     return this.bonusFruit;
 }
+    
 
 }

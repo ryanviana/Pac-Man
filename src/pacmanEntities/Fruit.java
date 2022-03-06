@@ -9,13 +9,10 @@ public class Fruit extends Element {
     
     //Valor que a fruta dá de score
     private int scoreValue;
-    //nome da fruta, por exemplo: morango, cereja...
-    private String fruitName;
     
-    
-    Fruit(Board Board){
+    public Fruit(Board Board, int level){
         super(Board);
-        this.identity = "bonusFruit";
+        this.identity = BONUS_FRUIT;
         Board.updateGameBoard(this);
     }
     
@@ -32,19 +29,18 @@ public class Fruit extends Element {
     public void setScoreValue(int scoreValue){
         this.scoreValue = scoreValue;
     }
-    
-    /** Retorna o nome da fruta.
-     * @return Nome da fruta.
-     */
-    public String getFruitName(){
-        return this.fruitName;
-    }
-    
+
     /** Modifica o nome da fruta.
-     * @param fruitName Novo nome da fruta.
+     * @param level Novo nome da fruta.
      */
-    public void setFruitName(String fruitName){
-        this.fruitName = fruitName;
+    public void setFruitName(int level){
+        if(level==1)
+            this.setName(CHERRY);
+        if(level==2)
+            this.setName(STRAWBERRY);
+        if(level==3)
+            this.setName(ORANGE);
     }
-    
 }
+    
+

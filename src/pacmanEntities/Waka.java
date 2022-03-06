@@ -1,6 +1,5 @@
 package pacmanEntities;
 
-import java.util.Scanner;
 import pacmanEngine.*;
 
 /** Representa o pacman.
@@ -13,8 +12,8 @@ public class Waka extends Element implements gameConstants{
      */
     public Waka(Board Board){
         super(Board);
-        this.speed = 2;
-        this.identity = "waka";
+        this.speed = 1;
+        this.identity = WAKA;
         Board.updateGameBoard(this);
     }
     
@@ -33,54 +32,37 @@ public class Waka extends Element implements gameConstants{
        
 
         switch (movement) {
-            case "w":
+            case UP:
                 for(i=1;i<=speed;i++){
                     if(Board.cellValidation(this.xPosition,this.yPosition-1)){
                         this.yPosition -= 1;
+                        this.changeDirection(UP);
                     }
                 }       break;
-            case "a":
+            case LEFT:
                 for(i=1;i<=speed;i++){
-                    if(Board.cellValidation(this.xPosition-1,this.yPosition))
+                    if(Board.cellValidation(this.xPosition-1,this.yPosition)){
                         this.xPosition -= 1;
+                        this.changeDirection(LEFT);
+                    }
                 }         break;
-            case "s":
+            case DOWN:
                 for(i=1;i<=speed;i++){
-                    if(Board.cellValidation(this.xPosition,this.yPosition+1))
+                    if(Board.cellValidation(this.xPosition,this.yPosition+1)){
                         this.yPosition += 1;
+                        this.changeDirection(DOWN);
+                    }
                 }         break;
-            case "d":
+            case RIGHT:
                 for(i=1;i<=speed;i++){
-                    if(Board.cellValidation(this.xPosition+1,this.yPosition))
+                    if(Board.cellValidation(this.xPosition+1,this.yPosition)){
                         this.xPosition += 1;
+                        this.changeDirection(RIGHT);
+                    }
                 }           break;
             default:
                 break;
         }
         Board.updateGameBoard(this);
-
     }
-    
-    //método que reseta o waka(pacman) em uma posição aleatória do labirinto.
-
-    /** Reinicia a posição do pacman no labirinto.
-     * @param Board labirinto em que o pacman será reiniciado.
-     */
-    public void reset(Board Board){
-        
-        Coordinates randomCoords = new Coordinates();
-        randomCoords.randomPosition();
-       
-        while(Board.gameBoard[randomCoords.get_y_coordinate()][randomCoords.get_x_coordinate()].getWaka() == true){
-            randomCoords.randomPosition();
-        }
-        this.previous_xPosition = xPosition;
-        this.previous_yPosition = yPosition;
-        this.xPosition = randomCoords.get_x_coordinate();
-        this.yPosition = randomCoords.get_y_coordinate();
-        
-        Board.updateGameBoard(this);
-    }
-    
-    
 }

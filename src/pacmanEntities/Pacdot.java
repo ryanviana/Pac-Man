@@ -12,10 +12,7 @@ public class Pacdot extends Element{
      */
     public Pacdot(Board Board){
         super(Board);
-        this.identity = "pacDot";
+        this.identity = PACDOT;
         Board.updateGameBoard(this);
-        
     }
-    
-    
 }

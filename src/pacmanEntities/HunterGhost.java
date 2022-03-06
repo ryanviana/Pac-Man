@@ -16,8 +16,9 @@ public class HunterGhost extends Ghost implements gameConstants{
      */
     public HunterGhost(Board Board){
         super(Board);
-        this.identity = "hunterGhost";
+        this.identity = HUNTER_GHOST;
         this.speed = 1;
+
         Board.updateGameBoard(this);
     }
     
@@ -126,12 +127,12 @@ public class HunterGhost extends Ghost implements gameConstants{
      * @param Waka pacman no tabuleiro.
      * @param Board tabuleiro em que está acontecendo o jogo.
      */
-    public void moveCell(Waka Waka, Board Board){
+    public void moveCell(Waka Waka, Board Board, boolean energyPillEffect){
     
         int i;
         
         //iniciamos um par ordenado de coordenadas (x,y) que irá definir o próximo movimento
-        Coordinates nextMove;
+        Coordinates nextMove = new Coordinates(xPosition,yPosition);
         //a partir do método BFS encontramos o menor caminho entre o fantasma e o waka(pacman).
         ArrayList<Coordinates> path = this.BFS_Algorithm(Board.gameBoard, Waka);
         
@@ -140,20 +141,89 @@ public class HunterGhost extends Ghost implements gameConstants{
         //o ciclo for começa com 1 pois a primeira posição do array "path" é a posição em que o fantasma
         //já está.
         for(i=1;i<=this.speed;i++){
-        nextMove = path.get(i);
+        if(i<path.size())
+            nextMove = path.get(i);
+        if(energyPillEffect){
+            moveOposite(nextMove, Board);
+        }
+        else{
+            move(nextMove);
+        }
+        Board.updateGameBoard(this);
+        } 
+    }
+  
+    private void moveOposite(Coordinates nextMove,Board Board){
+        int new_xPosition = nextMove.get_x_coordinate();
+        int new_yPosition = nextMove.get_y_coordinate();
+        String direction = calculateDirection(new_xPosition,xPosition,
+                           new_yPosition,yPosition);
+        switch(direction){
+            case LEFT:
+                if(moveRight(Board))
+                    break;
+                if(moveUp(Board))
+                    break;
+                if(moveDown(Board))
+                    break;
+                moveLeft(Board);
+                break;
+            case RIGHT:
+                if(moveLeft(Board))
+                    break;
+                if(moveUp(Board))
+                    break;
+                if(moveDown(Board))
+                    break;
+                moveRight(Board);
+                break;
+            case DOWN:
+                if(moveUp(Board))
+                    break;
+                if(moveRight(Board))
+                    break;
+                if(moveLeft(Board))
+                    break;
+                moveDown(Board);
+                break;
+            case UP:
+                if(moveDown(Board))
+                    break;
+                if(moveRight(Board))
+                    break;
+                if(moveLeft(Board))
+                    break;
+                moveDown(Board);
+                break;
+        }
+
+    }
+    
+    private void move(Coordinates nextMove){
         this.previous_xPosition = this.xPosition;
         this.previous_yPosition = this.yPosition;
         this.xPosition = nextMove.get_x_coordinate();
         this.yPosition = nextMove.get_y_coordinate();
-        Board.updateGameBoard(this);
-
-        }
-        
-    }    
-    
-
-   
+        this.changeDirection(calculateDirection(xPosition,previous_xPosition,
+                                                yPosition,previous_yPosition));
     }
+    
+    private String calculateDirection(int x, int px, int y, int py){
+        if(x-px==1){
+            return RIGHT;
+        }
+        if(x-px==-1){
+            return LEFT;
+        }
+        if(y-py==1){
+            return DOWN;
+        }
+        if(y-py==-1){
+            return UP;
+        }
+        return "NONE";
+    }
+}
 
 
     

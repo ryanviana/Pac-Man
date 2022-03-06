@@ -50,7 +50,9 @@ public class Coordinates implements gameConstants{
        this.x = rand1.nextInt(N_CELLS_COLUMN);
        this.y = rand2.nextInt(N_CELLS_ROW);
        
-       while(Board.gameBoard[this.y][this.x].getWall() == true){
+       while(!Board.cellValidation(x, y)){
+       rand1 = new Random();
+       rand2 = new Random();
        this.x = rand1.nextInt(N_CELLS_COLUMN);
        this.y = rand2.nextInt(N_CELLS_ROW);
        }

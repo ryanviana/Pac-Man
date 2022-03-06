@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacmanTheGame.JavafxController">
+   <top>
+      <Pane fx:id="borderPaneTop" prefHeight="82.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lbScore" layoutX="63.0" layoutY="18.0" text="Label" />
+            <Label fx:id="lbLives" layoutX="63.0" layoutY="50.0" text="Label" />
+            <Text layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORE:" />
+            <Text layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LIVES:" />
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <Pane prefHeight="490.0" prefWidth="38.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="490.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Pane fx:id="borderPaneBottom" prefHeight="28.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lbLevel" layoutX="52.0" layoutY="6.0" text="Label" />
+            <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LEVEL" />
+         </children>
+      </Pane>
+   </bottom>
+   <center>
+      <Pane fx:id="borderPaneCenter" prefHeight="400.0" prefWidth="400.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

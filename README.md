@@ -12,7 +12,8 @@
 
 ### For Developers
 ##### UML
-![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/Main.jpg)
+
+If you want to see the UML for this project, you can [click here](https://drive.google.com/file/d/12amLPpujbobzB3TeRqtT6uSdC7SSKhe_/view?usp=share_link).
 
 ##### Designing New Levels
 

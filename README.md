@@ -5,6 +5,8 @@
  Pac-Man is a 1980 maze action video game developed for arcades. The player controls Pac-Man, who must eat all the dots inside an enclosed maze while avoiding four colored ghosts. 
 
 ### Game Preview
+---
+
 ![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/play.gif)
 
 ![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/ghost_hunter.gif)
@@ -13,6 +15,8 @@
 
 
 ### For Developers
+---
+
 ##### UML
 
 If you want to see the UML for this project, you can [click here](https://drive.google.com/file/d/12amLPpujbobzB3TeRqtT6uSdC7SSKhe_/view?usp=share_link).
@@ -37,6 +41,8 @@ Finally, you can add your new level into the game by,
 3. Include the path to the new file in _levelFiles_ array.
 
 ### How to Run
+---
+
 ##### Using [NetBeans](https://netbeans.apache.org/download/index.html)
 1. Open the project using NetBeans
 2. In the src look for PacmanTheGame folder

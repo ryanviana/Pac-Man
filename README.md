@@ -1,4 +1,4 @@
-![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/PacMan_-_The_Game.png)
+# Pac-Man, The Game.
 
 #### Pac-Man game implemented using pure Java
 
@@ -6,7 +6,9 @@
 
 ### Game Preview
 ![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/play.gif)
+
 ![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/ghost_hunter.gif)
+
 ![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/dying.gif)
 
 

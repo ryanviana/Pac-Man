@@ -1,14 +1,18 @@
 ![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/PacMan_-_The_Game.png)
 
-## Pac-Man, The Game.
 #### Pac-Man game implemented using pure Java
 
  Pac-Man is a 1980 maze action video game developed for arcades. The player controls Pac-Man, who must eat all the dots inside an enclosed maze while avoiding four colored ghosts. 
 
 ### Game Preview
+![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/play.gif)
+![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/ghost_hunter.gif)
+![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/dying.gif)
+
 
 ### For Developers
 ##### UML
+![alt text](https://github.com/ryanviana/PacMan/blob/main/readmeImages/Main.jpg)
 
 ##### Designing New Levels
 
